@@ -13,19 +13,21 @@ get all the ENI of alb/nlb targets & EIP, then add it to traffic mirror session
 
 make sure all `.sh` file executable, by `chmod +x getalleni.sh trafficmirror.sh`
 
-## get all ENI
+### simple find all ENI, and then add it to traffic mirror
+
+```
+getalleni.sh  | sort | uniq | xargs -n 1 trafficmirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id>
+```
+
+## only get all ENI
 
 ```
 ./getalleni.sh
 ```
 
-## add new traffic mirror session
+## only add new traffic mirror session
 
 ```
 ./trafficmirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id> <source-eni-id>
 ```
 
-## all in one
-```
-getalleni.sh  | sort | uniq | xargs -n 1 trafficmirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id>
-```
