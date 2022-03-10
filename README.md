@@ -4,9 +4,9 @@ get all the ENI of alb/nlb targets & EIP, then add it to traffic mirror session
 
 ## Dependences
 
-1. (aws cli)[https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html]
-1. (jq)[https://stedolan.github.io/jq/]
-1. (xargs)[https://man7.org/linux/man-pages/man1/xargs.1.html]
+1. [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+1. [jq](https://stedolan.github.io/jq/)
+1. [xargs](https://man7.org/linux/man-pages/man1/xargs.1.html)
 1. configure `aws` cli with AWS AK/SK, default region, and output as `json`
 
 # Usage
