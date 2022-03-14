@@ -27,7 +27,7 @@ make sure all `.sh` file executable, by `chmod +x *.sh`
 ./get-edge-eni.sh | xargs -n 1 ./get-eni-instance.sh 
 
 # get EC2 instance `NAME` tag
-./get-edge-eni.sh | xargs -n 1 ./get-eni-instance.sh | cut -d " " -f2 | xargs -n 1 ./get-instance-name.sh
+./get-edge-eni.sh | xargs -n 1 ./get-eni-instance.sh | cut -d " " -f3 | xargs -n 1 ./get-instance-name.sh
 ```
 
 ## only get all ENI
