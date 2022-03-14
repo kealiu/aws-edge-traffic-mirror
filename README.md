@@ -1,6 +1,10 @@
 # Overview
 
 get all the ENI of alb/nlb targets & EIP, then add it to traffic mirror session
+- `get-edge-eni.sh` : get all edge ENI
+- `traffic-mirror.sh` : add ENI to traffic mirror session
+- `get-eni-instance.sh` : get ENI ip & instances information
+- `get-instance-name.sh` : get EC2 instance `Name` tag value
 
 ## Dependences
 
@@ -11,21 +15,28 @@ get all the ENI of alb/nlb targets & EIP, then add it to traffic mirror session
 
 # Usage
 
-make sure all `.sh` file executable, by `chmod +x getalleni.sh trafficmirror.sh`
+make sure all `.sh` file executable, by `chmod +x *.sh`
 
 ## get all ENI
 
-```
-./getalleni.sh
+```bash
+# get ENI id
+./get-edge-eni.sh
+
+# get ENI ip & instance id
+./get-edge-eni.sh | xargs -n 1 ./get-eni-instance.sh 
+
+# get EC2 instance `NAME` tag
+./get-edge-eni.sh | xargs -n 1 ./get-eni-instance.sh | cut -d " " -f2 | xargs -n 1 ./get-instance-name.sh
 ```
 
 ## add new traffic mirror session
 
 ```
-./trafficmirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id> <source-eni-id>
+./traffic-mirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id> <source-eni-id>
 ```
 
-## all in one
+## all all ENI to traffic mirror in one
 ```
-getalleni.sh  | sort | uniq | xargs -n 1 trafficmirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id>
+./get-edge-eni.sh  | sort | uniq | xargs -n 1 ./traffic-mirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id>
 ```
