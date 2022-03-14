@@ -21,13 +21,16 @@ make sure all `.sh` file executable, by `chmod +x *.sh`
 
 ```bash
 # get ENI id
-./get-edge-eni.sh
+./get-edge-eni.sh | sort | uniq
 
 # get ENI ip & instance id
-./get-edge-eni.sh | xargs -n 1 ./get-eni-instance.sh 
+./get-edge-eni.sh | sort | uniq | xargs -n 1 ./get-eni-instance.sh 
 
 # get EC2 instance `NAME` tag
-./get-edge-eni.sh | xargs -n 1 ./get-eni-instance.sh | cut -d " " -f3 | xargs -n 1 ./get-instance-name.sh
+./get-edge-eni.sh | sort | uniq | xargs -n 1 ./get-eni-instance.sh |  xargs -n 1 ./get-instance-name.sh
+
+# save as csv(excel) format
+./get-edge-eni.sh | sort | uniq | xargs -n 1 ./get-eni-instance.sh |  xargs -n 1 ./get-instance-name.sh | tee list.csv
 ```
 
 ## only get all ENI
