@@ -29,7 +29,7 @@ make sure all `.sh` file executable, by `chmod +x *.sh`
 # get EC2 instance `NAME` tag
 ./get-edge-eni.sh | sort | uniq | xargs -n 1 ./get-eni-instance.sh |  xargs -n 1 ./get-instance-name.sh
 
-# save as csv(excel) format
+# save to `list.csv`(can open in excel) 
 ./get-edge-eni.sh | sort | uniq | xargs -n 1 ./get-eni-instance.sh |  xargs -n 1 ./get-instance-name.sh | tee list.csv
 ```
 
