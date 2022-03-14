@@ -8,16 +8,16 @@ get all the ENI of alb/nlb targets & EIP, then add it to traffic mirror session
 
 ## Dependences
 
-1. (aws cli)[https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html]
-1. (jq)[https://stedolan.github.io/jq/]
-1. (xargs)[https://man7.org/linux/man-pages/man1/xargs.1.html]
+1. [aws cli](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+1. [jq](https://stedolan.github.io/jq/)
+1. [xargs](https://man7.org/linux/man-pages/man1/xargs.1.html)
 1. configure `aws` cli with AWS AK/SK, default region, and output as `json`
 
 # Usage
 
 make sure all `.sh` file executable, by `chmod +x *.sh`
 
-## get all ENI
+### simple find all ENI, and then add it to traffic mirror
 
 ```bash
 # get ENI id
@@ -30,7 +30,7 @@ make sure all `.sh` file executable, by `chmod +x *.sh`
 ./get-edge-eni.sh | xargs -n 1 ./get-eni-instance.sh | cut -d " " -f2 | xargs -n 1 ./get-instance-name.sh
 ```
 
-## add new traffic mirror session
+## only get all ENI
 
 ```
 ./traffic-mirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id> <source-eni-id>
@@ -40,3 +40,4 @@ make sure all `.sh` file executable, by `chmod +x *.sh`
 ```
 ./get-edge-eni.sh  | sort | uniq | xargs -n 1 ./traffic-mirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id>
 ```
+
