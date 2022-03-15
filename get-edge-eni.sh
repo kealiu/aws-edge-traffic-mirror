@@ -21,7 +21,7 @@ do
 done
 
 ## clb
-for clbec2 in $(aws elb describe-load-balancers | jq -r '.LoadBalancerDescriptions[].Instances[].InstanceId')
+for clbec2 in $(aws elb describe-load-balancers | jq -r '.LoadBalancerDescriptions[] | select(.Scheme=="internet-facing") | .Instances[].InstanceId')
 do
   aws ec2 describe-instances --instance-ids ${clbec2} | jq -r '.Reservations[].Instances[].NetworkInterfaces[].NetworkInterfaceId'
 done
