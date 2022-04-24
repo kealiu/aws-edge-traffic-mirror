@@ -33,13 +33,13 @@ make sure all `.sh` file executable, by `chmod +x *.sh`
 ./get-edge-eni.sh | sort | uniq | xargs -n 1 ./get-eni-instance.sh |  xargs -n 1 ./get-instance-name.sh | tee list.csv
 ```
 
-## only get all ENI
+## only add one ENI
 
 ```
 ./traffic-mirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id> <source-eni-id>
 ```
 
-## all all ENI to traffic mirror in one
+## all ENI add to traffic mirror in once
 ```
 ./get-edge-eni.sh  | sort | uniq | xargs -n 1 ./traffic-mirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id>
 ```
