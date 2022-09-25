@@ -44,3 +44,8 @@ make sure all `.sh` file executable, by `chmod +x *.sh`
 ./get-edge-eni.sh  | sort | uniq | xargs -n 1 ./traffic-mirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id>
 ```
 
+# RDS
+
+```
+./get-rds-eni.sh  | sort | uniq | xargs -n 1 ./traffic-mirror.sh <traffic-mirror-target-id> <traffic-mirror-filter-id>
+```
